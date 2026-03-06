@@ -1,18 +1,19 @@
 # Terms and Conditions
 
-## Lorem Ipsum
+By participating in the Emergency Audio Event Detection Challenge, you agree to the following terms regarding scientific integrity, data usage, and evaluation.
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+## 1. Scientific Integrity
+Participants are expected to build models that generalize to unseen acoustic environments. 
+* Manual annotation, hand-labelling, or programmatic extraction of the hidden test set labels is strictly prohibited.
+* Submissions must rely entirely on automated machine learning pipelines (e.g., convolutional networks, foundation models) as defined in the provided `submission.py` format.
+* Any attempt to exploit data leakage, manipulate the Codabench ingestion program, or reverse-engineer the test set metrics will result in disqualification.
 
-## Sed ut perspiciatis
+## 2. Data Usage and Licensing
+The datasets provided in this challenge (derived from ESC-50, UrbanSound8K, and FSD50K) are intended solely for academic and research purposes within the context of this competition. 
+* Participants must adhere to the original Creative Commons (CC) licenses associated with the parent datasets.
+* The synthesized evaluation audio generated for this challenge may not be redistributed or used for commercial applications without explicit permission.
 
-Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae 
-ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit 
-aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam 
-est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore 
-et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, 
-nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae 
-consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?
+## 3. Evaluation Protocol
+The primary ranking metric is the Event F1-score, calculated via Intersection over Union (IoU) on temporal bounds. 
+* The challenge organizers reserve the right to inspect the source code of the top-performing submissions to verify reproducibility and ensure compliance with the algorithmic constraints.
+* The leaderboard results calculated by the scoring program are final.

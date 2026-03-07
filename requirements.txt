@@ -4,3 +4,6 @@ scipy
 soundfile
 scikit-learn
 matplotlib
+librosa
+ipykernel
+tqdm

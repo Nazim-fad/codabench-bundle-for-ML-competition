@@ -1,21 +1,25 @@
 # Seed:
 
-```
+Participants must submit a `submission.py` file defining a `get_model()` function, which returns an model object. This object must implement two methods:
+
+* `fit(train_features, train_labels, data_dir)`
+* `predict(audio_path)`
+
+
+```python
 class Model:
-    def fit(self, X_train, y_train):
-        """
-        This should handle the logic of training your model
-        :param X_train: np.array of training data
-        :param y_train: np.array of the same length as X_train. Contains classifications of X_train
-        """
+    def __init__(self):
         pass
 
-    def predict(self, X_test):
-        """
-        This should handle making predictions with a trained model
-        :param X_test: np.array of testing data
-        :return: np.array of the same length as X_test containing predictions to each point in X_test
-        """
+    def fit(self, train_features, train_labels, data_dir):
         pass
 
+    def predict(self, audio_path):
+        pass
+
+
+def get_model():
+    return Model()
 ```
+
+See `solution/submission.py` in the given bundle for a baseline model.

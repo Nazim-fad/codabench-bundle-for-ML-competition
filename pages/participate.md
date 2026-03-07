@@ -1,27 +1,53 @@
-# How to participate
+## Introduction: Emergency Audio Event Detection
 
-Participants must submit a `submission.py` file defining a `get_model()` function, which returns an model object. This object must implement two methods:
+The goal of this challenge is to build models capable of automatically detecting and segmenting emergency sounds from everyday background noise. 
 
-* `fit(train_features, train_labels, data_dir)`
-* `predict(audio_path)`
+![Audio Spectrogram Example](https://media.geeksforgeeks.org/wp-content/uploads/20200725122651/image121.png)
 
-The `predict` method must return a list of detected emergency segments, where each segment is a dictionary with `start` and `end`. For example:
+### The Task
+Given a dataset of mixed audio clips, your model must:
+* **Detect** whether an emergency sound occurs.
+* **Segment** the event by predicting its exact **start and end times**.
 
+*(Note: If no emergency is present in the clip, the model should simply return an empty result.)*
+
+### Why it Matters
+This is a complex challenge because models must simultaneously *recognize* the type of sound and *locate* it precisely in time. Solving this is crucial for advancing real-world applications like autonomous driving, public safety monitoring, smart city infrastructure, and assistive technologies.
+
+![Audio Spectrogram Analysis](https://upload.wikimedia.org/wikipedia/commons/c/c5/Spectrogram-19thC.png)
+
+
+## How to Participate
+
+Ready to build your solution? Here is everything you need to know to format and submit your model successfully.
+
+### 1. The Submission File
+Participants must submit a single Python file named **`submission.py`**. 
+
+Inside this file, you must define a `get_model()` function that returns your core model object. 
+
+### 2. Required Model Methods
+Your model object must implement the following two methods:
+
+* **`fit(train_features, train_labels, data_dir)`:** Use this to train your model on the provided dataset.
+* **`predict(audio_path)`:** Use this to process an audio file and return the timestamps of detected emergency segments.
+
+### 3. Expected Output Format
+The `predict` method must return a list of dictionaries. Each dictionary represents a detected emergency segment and must contain `start` and `end` keys. 
+
+**Example: Emergencies detected**
 ```python
 [
     {"start": 0.5, "end": 1.7},
-    {"start": 3.2, "end": 4.0},
+    {"start": 3.2, "end": 4.0}
 ]
+
 ```
 
-If no emergency is detected, the model should return an empty list:
+**Example: No emergency detected**
+If the model does not detect anything in the audio file, simply return an empty list:
 
 ```python
 []
+
 ```
-
-See the "Seed" page for the outline of a `Model` class, with the expected
-function names.
-
-See the "Timeline" page for additional information about the phases of this
-competition

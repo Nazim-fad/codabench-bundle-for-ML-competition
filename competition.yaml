@@ -1,4 +1,4 @@
-version: 1
+version: 2
 title: Emergency Audio Event Detection
 description: Detect emergency sound events in audio clips and predict their start and end times.
 image: logo.png

@@ -259,7 +259,9 @@ def load_fsd50k_emergency_only(
         try:
             tmp = pd.read_csv(p, nrows=5)
             cols = set(tmp.columns)
-            if ("labels" in cols or "label" in cols) and ("fname" in cols or "filename" in cols):
+            if ("labels" in cols or "label" in cols) and (
+                "fname" in cols or "filename" in cols
+            ):
                 gt_csv = p
                 break
         except Exception:
@@ -318,7 +320,9 @@ def load_fsd50k_emergency_only(
     return clips
 
 
-def cap_fsd50k_emergency(clips: list[SourceClip], cap: Optional[int], seed: int) -> list[SourceClip]:
+def cap_fsd50k_emergency(
+    clips: list[SourceClip], cap: Optional[int], seed: int
+) -> list[SourceClip]:
     if cap is None:
         return clips
 
@@ -403,7 +407,9 @@ def process_split(
         )
 
         if clip.split_group == "emergency":
-            start = 0.0 if clip.event_start is None else max(0.0, float(clip.event_start))
+            start = (
+                0.0 if clip.event_start is None else max(0.0, float(clip.event_start))
+            )
             end = clip_duration if clip.event_end is None else float(clip.event_end)
 
             start = min(start, clip_duration)
@@ -423,10 +429,14 @@ def process_split(
                 }
             )
 
-    features_df = pd.DataFrame(feature_rows).sort_values("sample_id").reset_index(drop=True)
-    labels_df = pd.DataFrame(label_rows, columns=["sample_id", "start", "end"]).sort_values(
-        ["sample_id", "start", "end"]
-    ).reset_index(drop=True)
+    features_df = (
+        pd.DataFrame(feature_rows).sort_values("sample_id").reset_index(drop=True)
+    )
+    labels_df = (
+        pd.DataFrame(label_rows, columns=["sample_id", "start", "end"])
+        .sort_values(["sample_id", "start", "end"])
+        .reset_index(drop=True)
+    )
 
     features_path = split_dir / f"{split_name}_features.csv"
     features_df.to_csv(features_path, index=False)
@@ -439,7 +449,9 @@ def process_split(
 
         features_df.to_csv(reference_root / f"{split_name}_features.csv", index=False)
 
-    print(f"{split_name}: {len(features_df)} clips, {len(labels_df)} emergency segments")
+    print(
+        f"{split_name}: {len(features_df)} clips, {len(labels_df)} emergency segments"
+    )
 
 
 def write_summary(clips: list[SourceClip], out_csv: Path) -> None:
@@ -486,14 +498,18 @@ def print_split_distribution(split_map: dict[str, list[SourceClip]]) -> None:
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description="Build dev_phase for emergency audio event detection")
+    parser = argparse.ArgumentParser(
+        description="Build dev_phase for emergency audio event detection"
+    )
     parser.add_argument(
         "--repo-root",
         type=str,
         default="dataset_source",
         help="Folder containing esc50/, urbansound8k/, fsd50k/. Default: dataset_source",
     )
-    parser.add_argument("--clean", action="store_true", help="Delete existing dev_phase first")
+    parser.add_argument(
+        "--clean", action="store_true", help="Delete existing dev_phase first"
+    )
     parser.add_argument("--seed", type=int, default=42)
     parser.add_argument(
         "--fsd-max-labels",
@@ -559,7 +575,9 @@ def main() -> None:
     all_clips.extend(fsd_clips)
 
     if not all_clips:
-        raise RuntimeError("No usable clips found. Check dataset folders and label mappings.")
+        raise RuntimeError(
+            "No usable clips found. Check dataset folders and label mappings."
+        )
 
     print_counts("All usable clips", all_clips)
 

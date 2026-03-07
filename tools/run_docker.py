@@ -1,4 +1,5 @@
 from pathlib import Path
+
 try:
     import docker
 except ImportError:
@@ -29,7 +30,7 @@ if __name__ == "__main__":
             f"{REPO}/dev_phase/input_data:/app/input_data",
             f"{REPO}/ingestion_res:/app/output",
             f"{REPO}/solution:/app/ingested_program",
-        ]
+        ],
     )
     print(logs.decode("utf-8"))
     logs = client.containers.run(
@@ -43,7 +44,7 @@ if __name__ == "__main__":
             f"{REPO}/dev_phase/reference_data:/app/input/ref",
             f"{REPO}/ingestion_res:/app/input/res",
             f"{REPO}/scoring_res:/app/",
-        ]
+        ],
     )
     print(logs.decode("utf-8"))
     print("Docker container ran successfully.")

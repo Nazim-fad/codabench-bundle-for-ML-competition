@@ -138,9 +138,7 @@ def main(data_dir: Path, output_dir: Path) -> None:
         )
 
     if not hasattr(model, "predict"):
-        raise AttributeError(
-            "Submission model must implement 'predict(audio_path)'."
-        )
+        raise AttributeError("Submission model must implement 'predict(audio_path)'.")
 
     print("Training the model")
     start = time.time()

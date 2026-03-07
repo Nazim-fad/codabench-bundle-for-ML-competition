@@ -1,5 +1,4 @@
 import numpy as np
-import pandas as pd
 import soundfile as sf
 
 
@@ -39,7 +38,7 @@ class EnergyDetector:
 
         for i in range(0, len(audio) - self.frame_size + 1, self.hop_size):
             frame = audio[i : i + self.frame_size]
-            energy = float(np.mean(frame ** 2))
+            energy = float(np.mean(frame**2))
             energies.append(energy)
             starts.append(i)
 
@@ -67,7 +66,9 @@ class EnergyDetector:
 
         label_map = {}
         for sample_id, g in train_labels.groupby("sample_id"):
-            label_map[str(sample_id)] = list(zip(g["start"].astype(float), g["end"].astype(float)))
+            label_map[str(sample_id)] = list(
+                zip(g["start"].astype(float), g["end"].astype(float))
+            )
 
         pos_energies = []
         neg_energies = []
@@ -90,7 +91,6 @@ class EnergyDetector:
                     pos_energies.append(energy)
                 else:
                     neg_energies.append(energy)
-
 
         pos_mean = float(np.mean(pos_energies))
         neg_mean = float(np.mean(neg_energies))

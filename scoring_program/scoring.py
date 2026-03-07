@@ -61,8 +61,7 @@ def group_segments(df: pd.DataFrame) -> dict[str, list[tuple[float, float]]]:
 
     for sample_id, g in df.groupby("sample_id"):
         grouped[str(sample_id)] = [
-            (float(row.start), float(row.end))
-            for row in g.itertuples(index=False)
+            (float(row.start), float(row.end)) for row in g.itertuples(index=False)
         ]
     return grouped
 
@@ -151,7 +150,8 @@ def compute_segment_metrics(
     f1 = f1_score(precision, recall)
     mean_matched_iou = (
         float(sum(all_matched_ious) / len(all_matched_ious))
-        if all_matched_ious else 0.0
+        if all_matched_ious
+        else 0.0
     )
 
     return {
@@ -165,9 +165,15 @@ def compute_segment_metrics(
     }
 
 
-def compute_presence_metrics(pred_df: pd.DataFrame, true_df: pd.DataFrame) -> dict[str, float]:
-    pred_positive = set(pred_df["sample_id"].astype(str).unique()) if not pred_df.empty else set()
-    true_positive = set(true_df["sample_id"].astype(str).unique()) if not true_df.empty else set()
+def compute_presence_metrics(
+    pred_df: pd.DataFrame, true_df: pd.DataFrame
+) -> dict[str, float]:
+    pred_positive = (
+        set(pred_df["sample_id"].astype(str).unique()) if not pred_df.empty else set()
+    )
+    true_positive = (
+        set(true_df["sample_id"].astype(str).unique()) if not true_df.empty else set()
+    )
 
     tp = len(pred_positive & true_positive)
     fp = len(pred_positive - true_positive)
@@ -193,8 +199,12 @@ def compute_presence_accuracy(
     true_df: pd.DataFrame,
 ) -> float:
     all_sample_ids = set(features_df["sample_id"].astype(str).unique())
-    pred_positive = set(pred_df["sample_id"].astype(str).unique()) if not pred_df.empty else set()
-    true_positive = set(true_df["sample_id"].astype(str).unique()) if not true_df.empty else set()
+    pred_positive = (
+        set(pred_df["sample_id"].astype(str).unique()) if not pred_df.empty else set()
+    )
+    true_positive = (
+        set(true_df["sample_id"].astype(str).unique()) if not true_df.empty else set()
+    )
 
     correct = 0
     for sample_id in all_sample_ids:

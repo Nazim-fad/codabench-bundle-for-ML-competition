@@ -250,12 +250,12 @@ def main(reference_dir: Path, prediction_dir: Path, output_dir: Path):
         presence_accuracy = compute_presence_accuracy(features_df, pred_df, true_df)
 
         for key, value in segment_metrics.items():
-            scores[f"{eval_set}_{key}"] = round(float(value),3)
+            scores[f"{eval_set}_{key}"] = float(value)
 
         for key, value in presence_metrics.items():
-            scores[f"{eval_set}_{key}"] = round(float(value), 3)
+            scores[f"{eval_set}_{key}"] = float(value)
 
-        scores[f"{eval_set}_presence_accuracy"] = round(float(presence_accuracy), 3)
+        scores[f"{eval_set}_presence_accuracy"] = float(presence_accuracy)
 
     metadata_path = prediction_dir / "metadata.json"
     if metadata_path.exists():

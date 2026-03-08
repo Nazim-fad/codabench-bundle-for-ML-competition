@@ -17,7 +17,7 @@ This is a complex challenge because models must simultaneously *recognize* the t
 **Mel-Spectrogram Comparison**
 *(Visualizing the non-linear frequency energy distributions)*
 
-![Mel-Spectrogram Comparison](https://raw.githubusercontent.com/Nazim-fad/Emergency-Audio-Event-Detection-Challenge/refs/heads/main/assets/spectograms.png)
+<img src="https://raw.githubusercontent.com/Nazim-fad/Emergency-Audio-Event-Detection-Challenge/refs/heads/main/assets/spectograms.png" alt="Mel-Spectrogram Comparison" width="700" />
 
 **Reference Audio Samples**
 *(Auditory verification of the Signal-to-Noise Ratio and environmental distortion)*

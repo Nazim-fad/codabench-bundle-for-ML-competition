@@ -9,9 +9,6 @@ FROM codalab/codalab-legacy:py39
 # Set environment variables to prevent interactive prompts
 ENV DEBIAN_FRONTEND=noninteractive
 
-# Install system-level dependencies for audio processing
-RUN apt-get update && apt-get install -y libsndfile1 && rm -rf /var/lib/apt/lists/*
-
 # Step 2: Install system-level dependencies (if any)
 # e.g., git, wget, or common libraries for OpenCV like libgl1
 RUN pip install -U pip
